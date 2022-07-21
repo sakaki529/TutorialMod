@@ -1,0 +1,4 @@
+displayName = Tutorial Mod
+author = Cleyera
+version = 0.1
+includeSource = true
