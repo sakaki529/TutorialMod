@@ -22,7 +22,7 @@ namespace TutorialMod.Projectiles.Magic
             Projectile.timeLeft = 120;
             Projectile.tileCollide = true;//地形貫通させない
             Projectile.ignoreWater = true;
-            Projectile.extraUpdates = 100;//これが重要
+            Projectile.extraUpdates = 100;//これが重要(詳しくはTutorialArrow
         }
         public override void AI()
         {
@@ -34,7 +34,7 @@ namespace TutorialMod.Projectiles.Magic
                     vector -= Projectile.velocity * (i * 0.25f);
                     Projectile.alpha = 255;
                     int num2 = Dust.NewDust(vector, 1, 1, DustID.ShadowbeamStaff, 0f, 0f, 0, default(Color), 0.9f);//紫色のモヤモヤが発生する。発生させるものを変更させたい場合はDustID.ShadowbeamStaffの部分を変えてみよう
-                                                                                                                   //DustIDの後ろに「.」を打つと使用できるDustの候補を出してくれるよ
+                                                                                                                   //DustIDの後ろに「.」を打つと使用できるDustの候補を出してくれるよ。DustIDの定義見てもいいかもしてない
                     Main.dust[num2].position = vector;
                     Main.dust[num2].noGravity = true;
                     Dust dust = Main.dust[num2];
@@ -58,14 +58,10 @@ namespace TutorialMod.Projectiles.Magic
         {
             //以下のコードはタイルにぶつかった際に反射させるコードです
             if (Projectile.velocity.X != oldVelocity.X)
-            {
                 Projectile.velocity.X = -oldVelocity.X;
-            }
             if (Projectile.velocity.Y != oldVelocity.Y)
-            {
                 Projectile.velocity.Y = -oldVelocity.Y;
-            }
-            return false;//タイルに衝突しても発射体は消えないように
+            return false;//falseだとタイルに衝突しても発射体は消えないようになる
         }
     }
 }

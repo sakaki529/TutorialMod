@@ -20,13 +20,14 @@ namespace TutorialMod.Projectiles.Ranged
             Projectile.aiStyle = 1;//aiテンプレートの番号。1なら矢。うまく使うと発射体を簡単に作れる。-1にすると一般的な発射体が行う方向の変化等の一部の動作が行われなくなる。その場合でも発射体としての支障はとくにない。
             AIType = ProjectileID.Bullet;//指定の発射体とほぼ同じ動きをするよう設定 
             //*実は弾丸もaistyleは1。ただaiTypeで弾丸と同じ動きをするように設定してやらないと一般的な矢みたく落ちてきちゃう。めんどくさい設定してんなおまえな
-            Projectile.timeLeft = 180;//三秒で消える弾丸...
+            
+            Projectile.timeLeft = 180;//三秒で消える
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 2;
 			Projectile.friendly = true;
 			Projectile.tileCollide = true;
 			Projectile.ignoreWater = false;
-            Projectile.extraUpdates = 1;//こいつのおかげで実質的には1.5秒で消える弾丸になっちまった！弾丸は速いし発射される量も多分おおいのでこんくらいが丁度いい音とリズムが超気持ちいい(???
+            Projectile.extraUpdates = 1;//このパラメータについてはTutorialArrowを見てね。こいつのおかげで実質的には1.5秒で消える弾丸になっちまった！弾丸は速いし発射される量も多分おおいのでこんくらいが丁度いい音とリズムが超気持ちいい(???
             Projectile.alpha = 255;
         }
 		public override void AI()
@@ -47,7 +48,7 @@ namespace TutorialMod.Projectiles.Ranged
         }
         public override void Kill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+            SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
         }
         public override Color? GetAlpha(Color lightColor)//発射体に色をつけることができる。真っ暗なのに発射体だけくっきり見える現象が再現できる
         {
